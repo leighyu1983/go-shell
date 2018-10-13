@@ -6,7 +6,7 @@ import (
  )
 
 func main() {
-	fmt.Print("started...");
+	fmt.Println("started...");
 	
 	configObj, _ := util.GetConfig()
 	fmt.Println(configObj.NetCard)

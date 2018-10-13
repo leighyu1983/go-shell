@@ -18,21 +18,34 @@ func PathExists(path string) (bool, error) {
 	return false, err
 }
 
-func CreatePathIfNotExist(path string) {
-	exist, err := PathExists(path)
-	if(err != nil) {
-		panic(err)
+func appendToFile(fileName string, content string) error {
+	f, err := os.OpenFile(fileName, os.O_APPEND, 0644)
+	if err != nil {
+		return err
 	}
-
-    if(!exist) {
-		err := os.Mkdir(path, os.ModePerm)
-		if(err != nil) {
-			panic(err)
-		}
-	}
+	
+	// 查找文件末尾的偏移量
+	n, _ := f.Seek(0, os.SEEK_END)
+	// 从末尾的偏移量开始写入内容
+	_, err = f.WriteAt([]byte(content), n)  
+	defer f.Close()  
+	return err
 }
 
-func SaveFile(file multipart.File, path string, filename string) (error){
+func CreatePathIfNotExist(path string) (error) {
+	exist, err := PathExists(path)
+	if(err != nil) {
+		return err
+	}
+
+    if(exist) {
+		return nil
+	}
+
+	return os.Mkdir(path, os.ModePerm)
+}
+
+func CreateFile(file multipart.File, path string, filename string) (error){
 
 	CreatePathIfNotExist(path)
 

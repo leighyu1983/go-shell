@@ -2,10 +2,10 @@ package util
 
 import(
 	"entities"
-	//"fmt"
 	"gopkg.in/yaml.v2"
 	"io/ioutil"
 	"errors"
+	//"fmt"
 )
 
 func GetConfig()(entities.ConfigEntity, error) {
