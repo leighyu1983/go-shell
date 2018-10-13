@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"utils"
+	"daos"
  )
 
 func main() {
@@ -10,7 +11,8 @@ func main() {
 	
 	configObj, _ := util.GetConfig()
 	fmt.Println(configObj.NetCard)
-
+	daos.Test()
+	
 	fmt.Print("finished");
 }
 
