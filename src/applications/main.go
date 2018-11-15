@@ -7,12 +7,17 @@ import (
  )
 
 func main() {
-	fmt.Println("started...");
+	//test()
+
+	
+}
+
+func test() {
+	fmt.Println("test started...");
 	
 	configObj, _ := util.GetConfig()
 	fmt.Println(configObj.NetCard)
 	daos.Test()
 	
-	fmt.Print("finished");
+	fmt.Print("test finished");
 }
-
