@@ -1,16 +1,16 @@
 package controllers
 
 import (
+	"fmt"
 	"utils"
 	"net/http"
 	"entities"
 	"github.com/gin-gonic/gin"
-	"fmt"
+	"services"
 )
 
 
-// 创建单品信息
-func updateHostName(c *gin.Context) {
+func SetHostName(c *gin.Context) {
 	defer util.PanicHttpHandler(c)
 
 	var hostname entities.HostnameEntity
@@ -19,5 +19,9 @@ func updateHostName(c *gin.Context) {
 		panic(err)
 	}
 
-	
+	fmt.Println("=========getting hostnmae params==========")
+	fmt.Println(hostname);
+	msg, err1 := service.SetHostname(hostname.IP, hostname.Hostname)
+	c.JSON(http.StatusOK, gin.H{"code": 1, "data": msg, "message": err1})
 }
+

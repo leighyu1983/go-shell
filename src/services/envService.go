@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"bytes"
 	"strconv"
-	str "strings"
+	"strings"
 )
 
 func SetHostname(ip string, hostname string) (string, error) {
@@ -19,9 +19,9 @@ func SetHostname(ip string, hostname string) (string, error) {
     session.Stderr = &stdErr
 
 	session.Run("hostnamectl set-hostname " + hostname)
-	msg := str.Replace(stdOut.String(), "\n", "", -1 )
+	msg := strings.Replace(stdOut.String(), "\n", "", -1 )
     ret, err := strconv.Atoi(msg)
-	fmt.Printf("%d, %s\n", ret, stdErr.String())
+	fmt.Printf("=== finish setting %d, %s\n", ret, stdErr.String())
 
 	return msg, err
 }
