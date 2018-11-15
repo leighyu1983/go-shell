@@ -8,7 +8,7 @@ import (
 )
 
 func SetHostname(ip string, hostname string) (string, error) {
-	session, err := SSHConnect( "username", "passworld", ip, 22 )
+	session, err := SSHConnect( "root", "123456", ip, 22 )
     if err != nil {
         panic(err)
     }
