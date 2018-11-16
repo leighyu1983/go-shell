@@ -10,18 +10,15 @@ import (
 
 
 func PanicHttpHandler(c *gin.Context) {
-    fmt.Println("===util.PanicHandler===111111111")
     if err := recover(); err != nil {
-        fmt.Println("~~~~panic~~~")
-        errMsg :=  fmt.Sprintf("%s", err) + string(debug.Stack())
+        errMsg :=  fmt.Sprintf("%s", err) + "\n" + string(debug.Stack())
         fmt.Println(errMsg)
-        c.JSON(200, gin.H{"code": 0, "data": "", "message": errMsg}) 
+        c.JSON(200, gin.H{"code": 1, "data": "", "message": errMsg}) 
     }
 }
 
 
 func PanicHandler() {
-    fmt.Println("===util.PanicHandler===222222222")
     exeName := os.Args[0] //获取程序名称
 
     now := time.Now()  //获取当前时间
