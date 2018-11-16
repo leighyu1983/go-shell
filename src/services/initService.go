@@ -7,7 +7,7 @@ import (
 
 func PrepareEnv() (infoMsg string) {
 	infoMsg = installExpect() + "\n"
-	infoMsg += generateSSHFile()
+	infoMsg += generateSshFile()
 	return infoMsg;
 }
 
