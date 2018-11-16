@@ -1,6 +1,6 @@
 package entities
 
 type ConfigEntity struct {
-    GOPATH    string
-    UselessButKeep string
+    GOPATH            string      `yaml:"gopath"`
+    UselessButKeep    string
 }
