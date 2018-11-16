@@ -14,8 +14,8 @@ func PrepareEnv(ip string) (infoMsg string) {
 // Install auto input shell plugin for centos 7
 func installExpect() (infoMsg string) {
 	entity, _ := util.GetConfig()
-	fmt.Println("~~~~~111~~~~" + entity.GOPATH)
-	command := fmt.Sprintf("rpm -ivh %s/scripts/rpms/expect/*", entity.GOPATH)
+	fmt.Println("~~~~~111~~~~" + entity.GoPath)
+	command := fmt.Sprintf("rpm -ivh %s/scripts/rpms/expect/*", entity.GoPath)
 	fmt.Println("~~~~~222~~~~~~" + command)
 	infoMsg, err := ExecCommand(command)
 	if(err != nil) {
