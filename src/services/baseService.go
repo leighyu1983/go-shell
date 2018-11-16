@@ -9,19 +9,28 @@ import (
 	"golang.org/x/crypto/ssh"
 	"net"
     "fmt"
-    
+    "strings"
     "bytes"
 	"os/exec"
 	//"errors"
 )
 
+/*
+  error 猜测来自于获取上一步的返回值，$? - catch  the status of last command
+  0: Success 成功
+  1: Failure 错误需要分析
+  2: Incorrect Usage 用法不当 
+  126: Not an executable 不是可执行的
+  127: Command Not Found 命令没有找到
+*/
 func ExecCommand(command string, args ...string ) (infoMsg string, err error)  {
 	var stdOut, stdErr bytes.Buffer
 	cmd := exec.Command(command, args...)
     cmd.Stdout = &stdOut
     cmd.Stderr = &stdErr
 
-    if err := cmd.Run(); err != nil {
+    // 错误2 可以忽略，比如rpm包已经存在，重复安装
+    if err := cmd.Run(); (err != nil && !strings.ContainsAny(stdErr.String(), "exit status 2")) {
 		errMsg := fmt.Sprintf("cmd exec failed: %s : %s", fmt.Sprint( err ), stdErr.String())
         fmt.Println(errMsg)
         //return "", errors.New(errMsg)
