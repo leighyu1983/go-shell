@@ -97,8 +97,10 @@ func Cors() gin.HandlerFunc {
 
 
 func print() {
+    fmt.Println("...running checking print()...");
     configObj, _ := util.GetConfig()
-	fmt.Println(configObj.GOPATH)
+    fmt.Println("Config file GOPATH is:" + configObj.GOPATH)
+    fmt.Println("...finished checking print()...");
 }
 
 func test() {
