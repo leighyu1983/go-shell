@@ -16,12 +16,19 @@ import (
 )
 
 /*
+  A
   error 猜测来自于获取上一步的返回值，$? - catch  the status of last command
   0: Success 成功
   1: Failure 错误需要分析
   2: Incorrect Usage 用法不当 
   126: Not an executable 不是可执行的
   127: Command Not Found 命令没有找到
+
+
+  B
+  exec包的exec.Command的第一个参数command，都源码可知，会去linux /usr/bin目录下搜索是否有这个命令并且是可以执行的。
+  ssh 包的session会直接运行语句(不是cat一类的命令)
+
 */
 func ExecCommand(command string, args ...string ) (infoMsg string, err error)  {
 	var stdOut, stdErr bytes.Buffer
