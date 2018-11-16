@@ -27,9 +27,19 @@ func runListener() {
 	router.Use(Cors())
 
 	//setWebRouters(router)
+    setBase(router)
 	setEnvRouters(router)
 
 	router.Run(":805")
+}
+
+
+func setBase(c *gin.Engine) {
+	g := c.Group("") 
+	{
+		//设置hostname
+		g.POST("/terminal", controllers.Terminal)
+	}
 }
 
 
