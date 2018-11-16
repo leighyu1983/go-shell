@@ -13,11 +13,6 @@ import (
   Setup config for linux
  *****************************************/
 
-func SyncSSHKeyFile(c *gin.Context) {
-	defer util.PanicHttpHandler(c)
-	
-}
-
 // Post form
 func SyncSshKey(c *gin.Context) {
 	defer util.PanicHttpHandler(c)

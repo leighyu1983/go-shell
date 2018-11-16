@@ -16,7 +16,7 @@ import (
 func Init(c *gin.Context) {
 	defer util.PanicHttpHandler(c)
 	// target machine's ip
-	msg := service.PrepareEnv(c.PostForm("ip"))
+	msg := service.PrepareEnv()
 	c.JSON(http.StatusOK, gin.H{"code": 0, "data": msg, "message": nil})
 }
 

@@ -5,7 +5,7 @@ import (
 	"utils"
 )
 
-func PrepareEnv(ip string) (infoMsg string) {
+func PrepareEnv() (infoMsg string) {
 	infoMsg = installExpect() + "\n"
 	infoMsg += generateSSHFile()
 	return infoMsg;
