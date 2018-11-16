@@ -15,7 +15,7 @@ func PrepareEnv(ip string) (infoMsg string) {
 func installExpect() (infoMsg string) {
 	entity, _ := util.GetConfig()
 	fmt.Println("~~~~~111~~~~" + entity.GoPath)
-	command := fmt.Sprintf("rpm -ivh %s/scripts/rpms/expect/*", entity.GoPath)
+	command := fmt.Sprintf("rpm -ivh %s/scripts/rpms/expect/*.rpm", entity.GoPath)
 	fmt.Println("~~~~~222~~~~~~" + command)
 	infoMsg, err := ExecCommand(command)
 	if(err != nil) {
