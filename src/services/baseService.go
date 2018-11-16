@@ -8,8 +8,28 @@ import (
 	*/
 	"golang.org/x/crypto/ssh"
 	"net"
-	"fmt"
+    "fmt"
+    
+    "bytes"
+	"os/exec"
+	//"errors"
 )
+
+func ExecCommand(command string) (infoMsg string, err error)  {
+	var stdOut, stdErr bytes.Buffer
+	cmd := exec.Command(command)
+    cmd.Stdout = &stdOut
+    cmd.Stderr = &stdErr
+
+    if err := cmd.Run(); err != nil {
+		errMsg := fmt.Sprintf("cmd exec failed: %s : %s", fmt.Sprint( err ), stdErr.String())
+        fmt.Println(errMsg)
+        //return "", errors.New(errMsg)
+        panic(err)
+    }
+
+	return stdOut.String(), nil
+}
 
 func SSHConnect( user, password, host string, port int ) ( *ssh.Session, error ) {
     var (

@@ -1,31 +1,37 @@
-#! /bin/bash
+#!/bin/bash
 
-echo "...pull..."
-git pull
+##################################################
+#
+# set GOPATH  GOROOT before running this script
+#
+##################################################
 
-echo "...stop container tourjpn..."
-docker stop tourjpn
 
-echo "...remove container tourjpn..."
-docker rm tourjpn
 
-echo "...remove image tourjprun..."
-docker rmi tourjprun
 
-echo "...copy config file..."
-cp ../utils/config.yaml ./
+echo "...removing project..."
+rm -rf goshell
+
+echo "...show delete result..."
+ls
+
+echo "...cloning project..."
+git clone https://github.com/leighyu1983/go-shell.git
+
+echo "...mv go-shell goshell..."
+mv go-shell goshell
+
+echo "...show mv result..."
+ls
+
+echo "...move rpms to the same directory as executable binary..."
+cp ${GOPATH}/scripts/rpms ${GOPATH}/src/applications/
+
+echo "...change dir..."
+cd ${GOPATH}/src/applications
 
 echo "...set linux temp env..."
-CGO_ENABLED=0 GOOS=linux 
+CGO_ENABLED=0 GOOS=linux
 
 echo "...building golang..."
-go build -a -installsuffix cgo  -tags netgo -o tourjprun
-
-echo "...building docker image..."
-docker build -t tourjprun:latest .
-
-echo "...start docker..."
-docker run -itd -p 805:805 -v /self/prod/imagesviews:/self/prod/aaa  --name tourjpn --network=yuyang_nw  tourjprun:latest
-
-echo "...done..."
-
+go build -a -installsuffix cgo  -tags netgo -o go-shell

@@ -1,0 +1,18 @@
+#!/usr/bin/expect
+
+set timeout 10
+set ip [lindex $argv 0]
+set password [lindex $argv 1]
+spawn ssh-copy-id $ip
+    expect {
+        "(yes/no)?"
+        {
+            send "yes\n"
+            expect "*assword:" { send "$password\n"}
+        }
+        "*assword:"
+        {
+            send "$password\n"
+        }
+    }
+expect eof

@@ -30,13 +30,15 @@ func runListener() {
     setBase(router)
 	setEnvRouters(router)
 
-	router.Run(":805")
+	router.Run(":605")
 }
 
 
 func setBase(c *gin.Engine) {
 	g := c.Group("") 
 	{
+        // 初始化，安装rpm包
+		g.POST("/init", controllers.Init)
 		//设置hostname
 		g.POST("/terminal", controllers.Terminal)
 	}
