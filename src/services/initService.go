@@ -12,7 +12,7 @@ func PrepareEnv(ip string) (infoMsg string) {
 
 // Install auto input shell plugin for centos 7
 func installExpect() (infoMsg string) {
-	infoMsg, err := ExecCommand("rpm -ivh ./rpms/expect/*")
+	infoMsg, err := ExecCommand("rpm -ivh ./scripts/rpms/expect/*")
 	if(err != nil) {
 		panic(err)
 	}

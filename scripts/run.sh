@@ -25,7 +25,7 @@ echo "...show mv result..."
 ls
 
 echo "...move rpms to the same directory as executable binary..."
-cp ${GOPATH}/scripts/rpms ${GOPATH}/src/applications/
+cp ${GOPATH}/scripts ${GOPATH}/src/applications/
 
 echo "...change dir..."
 cd ${GOPATH}/src/applications
