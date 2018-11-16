@@ -47,6 +47,26 @@ func ExecCommand(command string, args ...string ) (infoMsg string, err error)  {
 	return stdOut.String(), nil
 }
 
+
+func ExecSshSessionCommand(ip string, command string) (string, error) {
+	session, err := SSHConnect( "root", "123456", ip, 22 )
+    if err != nil {
+        panic(err)
+    }
+	defer session.Close()
+
+	var stdOut, stdErr bytes.Buffer
+    session.Stdout = &stdOut
+    session.Stderr = &stdErr
+
+	session.Run(command)
+	//msg := strings.Replace(stdOut.String(), "\n", "", -1 )
+	msg := stdOut.String()
+	fmt.Println(msg)
+
+	return msg, err
+}
+
 func SSHConnect( user, password, host string, port int ) ( *ssh.Session, error ) {
     var (
         auth         []ssh.AuthMethod
