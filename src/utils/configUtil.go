@@ -4,7 +4,6 @@ import(
 	"entities"
 	"gopkg.in/yaml.v2"
 	"io/ioutil"
-	"errors"
 	"fmt"
 )
 
@@ -14,8 +13,5 @@ func GetConfig()(entities.ConfigEntity, error) {
 	
 	config := entities.ConfigEntity{}
     yaml.Unmarshal(data, &config)
-    if(config.UselessButKeep == ""){
-        err = errors.New("read configuration file exception")
-	}
 	return config, err
 }
