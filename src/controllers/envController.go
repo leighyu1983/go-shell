@@ -12,7 +12,7 @@ import (
 // GET
 func Terminal(c *gin.Context) {
 	defer util.PanicHttpHandler(c)
-	msg := service.Terminal(c.Param("ip"), c.Param("command"))
+	msg := service.Terminal(c.PostForm("ip"), c.PostForm("command"))
 	c.String(http.StatusOK, msg)
 }
 
