@@ -1,15 +1,13 @@
 package controllers
 
 import (
-	"fmt"
 	"utils"
 	"net/http"
-	"entities"
 	"github.com/gin-gonic/gin"
 	"services"
 )
 
-// GET
+// POST form
 func Terminal(c *gin.Context) {
 	defer util.PanicHttpHandler(c)
 	msg := service.Terminal(c.PostForm("ip"), c.PostForm("command"))

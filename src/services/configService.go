@@ -38,7 +38,7 @@ func DisbleFirewall(ip string) (string) {
 }
 
 
-func DisbleSelinux(ip string, hostname string) (string) {
+func DisbleSelinux(ip string) (string) {
 	commands := []string{
 		"ssh %s setenforce 0", 
 		"ssh %s sed -i s/'SELINUX=enforcing'/'SELINUX=disabled'/g  /etc/selinux/config"}
@@ -56,7 +56,7 @@ func DisbleSelinux(ip string, hostname string) (string) {
 	return msgs;
 }
 
-func SetTimezone(ip string, hostname string) (string) {
+func SetTimezone(ip string) (string) {
 	command := fmt.Sprintf(
 		"ssh %s \\cp -rf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime", ip);
 	msg, _:= ExecCommand(command)

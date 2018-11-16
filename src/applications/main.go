@@ -37,7 +37,7 @@ func runListener() {
 func setBase(c *gin.Engine) {
 	g := c.Group("") 
 	{
-        // 初始化，安装rpm包
+        // 初始化，安装rpm包 & repect
 		g.POST("/init", controllers.Init)
 		//设置hostname
 		g.POST("/terminal", controllers.Terminal)
