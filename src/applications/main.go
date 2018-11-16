@@ -97,7 +97,7 @@ func test() {
 	fmt.Println("test started...");
 	
 	configObj, _ := util.GetConfig()
-	fmt.Println(configObj.NetCard)
+	fmt.Println(configObj.GOPATH)
 	daos.Test()
 	
 	fmt.Print("test finished");
