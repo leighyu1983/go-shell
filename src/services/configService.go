@@ -2,11 +2,13 @@ package service
 
 import (
 	"fmt"
+	"utils"
 )
 
 // copy ssh key to target machine which is specified by parameter ip
 func SyncSshKey(ip string, password string) (string) {
-	command := fmt.Sprintf("${GOPATH}/scripts/autocopy.exp  root@%s %s", ip, password);
+	entity, _ := util.GetConfig()
+	command := fmt.Sprintf("%s/scripts/autocopy.exp  root@%s %s", entity.GOPATH, ip, password);
 	msg, _:= ExecCommand(command)
 	
 	return msg;

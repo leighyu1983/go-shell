@@ -1,7 +1,8 @@
 package service
 
 import (
-	
+	"fmt"
+	"utils"
 )
 
 func PrepareEnv(ip string) (infoMsg string) {
@@ -12,7 +13,9 @@ func PrepareEnv(ip string) (infoMsg string) {
 
 // Install auto input shell plugin for centos 7
 func installExpect() (infoMsg string) {
-	infoMsg, err := ExecCommand("rpm -ivh ${GOPATH}/scripts/rpms/expect/*")
+	entity, _ := util.GetConfig()
+	command := fmt.Sprintf("rpm -ivh %s/scripts/rpms/expect/*", entity.GOPATH)
+	infoMsg, err := ExecCommand(command)
 	if(err != nil) {
 		panic(err)
 	}

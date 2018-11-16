@@ -1,8 +1,6 @@
 package entities
 
 type ConfigEntity struct {
-    NetCard    string
-    IP  string
-    Hostname string
+    GOPATH    string
     UselessButKeep string
 }
