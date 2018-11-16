@@ -23,10 +23,11 @@ func installExpect() (infoMsg string) {
 }
 
 // Generate ssh file without password
-func generateSSHFile() (infoMsg string) {
-	infoMsg, err := ExecCommand("ssh-keygen", "-t", "rsa", "-P", "''", "-f", "~/.ssh/id_rsa")
+func generateSshFile() (infoMsg string) {
+	//infoMsg, err := ExecCommand("ssh-keygen", "-t", "rsa", "-P", "''", "-f", "~/.ssh/id_rsa")
+	msg, err := GenerateSshFile("192.168.121.11", "ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa");
 	if(err != nil) {
 		panic(err)
 	}
-	return infoMsg
+	return msg
 }
