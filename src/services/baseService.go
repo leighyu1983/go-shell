@@ -15,9 +15,9 @@ import (
 	//"errors"
 )
 
-func ExecCommand(command string) (infoMsg string, err error)  {
+func ExecCommand(command string, args ...string ) (infoMsg string, err error)  {
 	var stdOut, stdErr bytes.Buffer
-	cmd := exec.Command(command)
+	cmd := exec.Command(command, args...)
     cmd.Stdout = &stdOut
     cmd.Stderr = &stdErr
 
