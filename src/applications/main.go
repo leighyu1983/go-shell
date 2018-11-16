@@ -12,6 +12,9 @@ import (
 
 func main() {
     //test()
+    // testing purpose
+    print();
+
     initGlobal();
 	runListener();
 	fmt.Print("finished");
@@ -92,6 +95,11 @@ func Cors() gin.HandlerFunc {
     }
 }
 
+
+func print() {
+    configObj, _ := util.GetConfig()
+	fmt.Println(configObj.GOPATH)
+}
 
 func test() {
 	fmt.Println("test started...");
